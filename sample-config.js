@@ -221,7 +221,7 @@ config.trader = {
 }
 
 config.adviceLogger = {
-  enabled: false,
+  enabled: true,
   muteSoft: true // disable advice printout if it's soft
 }
 

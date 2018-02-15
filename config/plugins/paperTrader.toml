@@ -4,5 +4,5 @@ feeUsing = 'maker'
 slippage = 0.05
 
 [simulationBalance]
-asset = 1
-currency = 0.1
+asset = 0.04
+currency = 0
