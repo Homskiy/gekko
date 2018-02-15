@@ -1,0 +1,104 @@
+# Для медвежего тренда
+# =================================================================
+
+# Закупаемся только при глубоком провале, продаем при небольшом росте.
+
+# Свечи 20 минут.
+
+# constant multiplier. 0.015 gets to around 70% fit
+constant = 0.015
+
+# history size, make same or smaller than history
+history = 90
+
+[thresholds]
+up = 15
+down = -200
+takeProfit = 0
+minProfit = 0
+takeLoss = 0
+persistence = 0
+negativeProfit = 0
+
+
+
+
+# Для бычего тренда
+# =================================================================
+
+# Закупаемся только при небольших провалах, продаем при большом росте.
+
+# Свечи 5 минут.
+
+# constant multiplier. 0.015 gets to around 70% fit
+constant = 0.015
+
+# history size, make same or smaller than history
+history = 90
+
+[thresholds]
+up = 150
+down = -30
+takeProfit = 0
+minProfit = 0
+takeLoss = 0
+persistence = 0
+negativeProfit = 0
+
+
+
+
+126% на ростущем рынке (219.06433% маркет), свечи 30 минут
+=============
+
+# constant multiplier. 0.015 gets to around 70% fit
+constant = 0.015
+
+# history size, make same or smaller than history
+history = 90
+
+[thresholds]
+up = 130
+down = -90
+takeProfit = 50
+minProfit = 5
+takeLoss = 0
+persistence = 0
+negativeProfit = 0
+
+
+28% на падающем рынке (-6% маркет), свечи 30
+======================
+
+# constant multiplier. 0.015 gets to around 70% fit
+constant = 0.015
+
+# history size, make same or smaller than history
+history =20
+
+[thresholds]
+up = 40
+down = -150
+takeProfit = 15
+minProfit = 5
+takeLoss = -10
+persistence = 0
+negativeProfit = 0
+
+42% на растущем рынке (+108% маркет), свечи 1, частая торговля
+======================
+
+# constant multiplier. 0.015 gets to around 70% fit
+constant = 0.015
+
+# history size, make same or smaller than history
+history = 10
+
+[thresholds]
+up = 110
+down = -90
+takeProfit = 50
+minProfit = 2
+takeLoss = 0
+persistence = 0
+negativeProfit = 0
