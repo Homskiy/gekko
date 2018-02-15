@@ -4,6 +4,7 @@ minProfit = 3
 takeLoss = 0
 negativeProfit = 1 
 negativeProfitLimit = -10
+botActivity = "uptrend"
 
 # Global params 
 # historySize - сколько свечек пропустить перед началом торговли
@@ -13,21 +14,20 @@ historySize = 1
 
 # stoch
 use_stoch = 1
-stoch_optInTimePeriod = 6
-stoch_optInFastKPeriod = 6
-stoch_optInSlowKPeriod = 1
+stoch_optInFastKPeriod = 50
+stoch_optInSlowKPeriod = 5
 stoch_optInSlowDPeriod = 2
-stoch_up = 75
-stoch_down = 25
+stoch_up = 80
+stoch_down = 20
 
 #MACD
 use_macd = 0
 macd_optInFastPeriod = 12
-macd_optInSlowPeriod = 26
+macd_optInSlowPeriod = 300
 macd_optInSignalPeriod = 9
-macd_persistence = 1
-macd_up = 0
-macd_down = 0
+macd_persistence = 5
+macd_up = 300
+macd_down = -300
 
 
 # RSI

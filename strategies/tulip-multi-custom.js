@@ -30,7 +30,7 @@ method.init = function() {
     };
 
     this.stochSettings = {
-        optInTimePeriod: this.settings.stoch_optInTimePeriod,
+        // optInTimePeriod: this.settings.stoch_optInTimePeriod,
         optInFastKPeriod: this.settings.stoch_optInFastKPeriod,
         optInSlowKPeriod: this.settings.stoch_optInSlowKPeriod,
         optInSlowDPeriod: this.settings.stoch_optInSlowDPeriod
@@ -204,7 +204,7 @@ method.check = function() {
 
     // Trend direction check MACD
     // -------------------------------------------------------------
-    if (this.macd.macdHistogram > 0 && this.macd.macdSignal > this.settings.macd_up) {
+    if (/*this.macd.macdHistogram > 0 && */this.macd.macdSignal > this.settings.macd_up) {
 
         if (this.macdTrend.direction !== 'up') {
             // reset the state for the new trend
@@ -229,7 +229,7 @@ method.check = function() {
             this.advice();
         };*/
 
-    } else if (this.macd.macdHistogram < 0 && this.macd.macdSignal < this.settings.macd_down) {
+    } else if (/*this.macd.macdHistogram < 0 && */this.macd.macdSignal < this.settings.macd_down) {
         // new trend detected
         if (this.macdTrend.direction !== 'down') {
             // reset the state for the new trend
@@ -326,29 +326,38 @@ method.check = function() {
     const all_long = long.reduce((total, long)=>long && total, true);
     const all_short = short.reduce((total, long)=>long && total, true);
     
-    // combining all indicators with AND
-    if (all_long) {
-        advice('long', this);
-    } else if (
-        all_short 
-        && (
-            (this.profit >= 0 && (this.profit >= this.settings.minProfit)) 
-            || (
-                this.profit < 0 
-                && this.settings.negativeProfit == 1 
-                && (
-                    this.settings.negativeProfitLimit == 0 
-                    || (
-                        this.settings.negativeProfitLimit != 0 
-                        && this.profit > this.settings.negativeProfitLimit
+    // Торговать только на разрешенных трендах
+
+    if ((this.settings.botActivity == "uptrend" && this.macdTrend.direction == "up" 
+        || this.settings.botActivity == "downtrend" && this.macdTrend.direction == "down" 
+        || this.settings.botActivity == "notrend" && this.macdTrend.direction == "none") && this.macdTrend.persisted
+        || this.settings.botActivity == "all") {
+        log.debug(this.settings.botActivity);
+        log.debug(this.macdTrend.direction);
+        // combining all indicators with AND
+        if (all_long) {
+            advice('long', this);
+        } else if (
+            all_short 
+            && (
+                (this.profit >= 0 && (this.profit >= this.settings.minProfit)) 
+                || (
+                    this.profit < 0 
+                    && this.settings.negativeProfit == 1 
+                    && (
+                        this.settings.negativeProfitLimit == 0 
+                        || (
+                            this.settings.negativeProfitLimit != 0 
+                            && this.profit > this.settings.negativeProfitLimit
+                            )
                         )
                     )
                 )
-            )
-        ) {
-        advice('short', this);
-    } else {
-        this.advice();
+            ) {
+            advice('short', this);
+        } else {
+            this.advice();
+        }
     }
 }
 
